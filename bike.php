@@ -1,29 +1,48 @@
 <?php
 class bike {
-    public $material;
-    public $weight;
-    public $diameter;
-    public $spokes;
-    public $length;
-    public $lubrication;
+    private $speed;
+    private $frame;
+    public $color;
+    public $seat;
+    public $basket;
 
-    public function assemble() { echo "Рама собрана <br>"; }
-    public function paint() { echo "Рама покрашена <br>"; }
-    public function inflate() { echo "Колёса накачаны <br>"; }
-    public function spin() { echo "Колёса крутятся <br>"; }
-    public function tighten() { echo "Цепь натянута <br>"; }
-    public function lubricate() { echo "Цепь смазана <br>"; }
+    public function __construct($speed, $frame, $color, $seat, $basket) {
+        $this->speed = $speed;
+        $this->frame = $frame;
+        $this->color = $color;
+        $this->seat = $seat;
+        $this->basket = $basket;
+    }
+
+    public function sitDown() 
+    { echo "Сел на велосипед <br>"; }
+    public function pedal() 
+    { echo "Кручу педали <br>"; }
+    public function steer() 
+    { echo "Поворачиваю руль <br>"; }
+    public function brake() 
+    { echo "Нажал на тормоз <br>"; }
+    public function getOff() 
+    { echo "Слез с велосипеда <br>"; }
+
+    public function ChangeSpeed($speedMy) {
+        if (is_int($speedMy)) {
+            $this->speed = $speedMy;
+        } else {
+            die('Скорость должна быть числом');
+        }
+    }
+    public function DisplaySpeed() {
+        return $this->speed;
+    }
 }
 
-$myBike = new bike;
-$myBike->material = "Алюминий";
-$myBike->weight = 12;
-$myBike->diameter = 26;
-$myBike->spokes = 36;
-$myBike->length = 110;
-$myBike->lubrication = "Силикон";
+$myBike = new bike(0, "Алюминий", "Красный", "Мягкое", "Есть");
+$myBike->ChangeSpeed(15);
+echo "Скорость: " . $myBike->DisplaySpeed() . " км/ч<br>";
 
-$myBike->assemble();
-$myBike->inflate();
-$myBike->lubricate();
-?>
+$myBike->sitDown();
+$myBike->pedal();
+$myBike->steer();
+$myBike->brake();
+$myBike->getOff(); 

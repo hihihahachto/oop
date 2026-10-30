@@ -1,29 +1,44 @@
 <?php
 class phone {
-    public $size;
-    public $resolution;
-    public $capacity;
-    public $charge;
-    public $frequency;
-    public $cores;
+    private $screenSize;
+    private $battery;
+    public $color;
+    public $storage;
+    public $camera;
 
-    public function turnOn() { echo "Экран включен <br>"; }
-    public function turnOff() { echo "Экран выключен <br>"; }
-    public function charge() { echo "Телефон заряжается <br>"; }
-    public function discharge() { echo "Телефон разряжается <br>"; }
-    public function start() { echo "Процессор запущен <br>"; }
-    public function stop() { echo "Процессор остановлен <br>"; }
+    public function __construct($screenSize, $battery, $color, $storage, $camera) {
+        $this->screenSize = $screenSize;
+        $this->battery = $battery;
+        $this->color = $color;
+        $this->storage = $storage;
+        $this->camera = $camera;
+    }
+
+    public function takeOut() { echo "Достал телефон <br>"; }
+    public function unlock() { echo "Разблокировал экран <br>"; }
+    public function openApp() { echo "Открыл приложение <br>"; }
+    public function call() { echo "Позвонил <br>"; }
+    public function sendMessage() { echo "Отправил смс <br>"; }
+    public function lock() { echo "Заблокировал <br>"; }
+    public function putAway() { echo "Убрал в карман <br>"; }
+
+    public function ChangeBattery($batteryMy) {
+        if (is_int($batteryMy)) {
+            $this->battery = $batteryMy;
+        } else {
+            die('Заряд должен быть числом');
+        }
+    }
+    public function DisplayBattery() {
+        return $this->battery;
+    }
 }
 
-$myPhone = new phone;
-$myPhone->size = "6.1";
-$myPhone->resolution = "1080x2400";
-$myPhone->capacity = 4000;
-$myPhone->charge = "50%";
-$myPhone->frequency = 2.4;
-$myPhone->cores = 8;
+$myPhone = new phone("6.1", 50, "Черный", "128GB", "12MP");
+$myPhone->ChangeBattery(80);
+echo "Заряд: " . $myPhone->DisplayBattery() . "%<br>";
 
-$myPhone->turnOn();
-$myPhone->charge();
-$myPhone->stop();
-?>
+$myPhone->takeOut();
+$myPhone->unlock();
+$myPhone->call();
+$myPhone->lock();
