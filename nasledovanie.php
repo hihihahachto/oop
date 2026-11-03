@@ -13,7 +13,7 @@ class Cat extends Animal{
 
 }
 $cat = new Cat();
-$cat->makeSound ('мяу <br>');
+$cat->makeSound ('мяу<br>');
 
 class Dog extends Animal{
 
