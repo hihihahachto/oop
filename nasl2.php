@@ -1,11 +1,11 @@
 <?php
 abstract class Animal{
     protected $name;
-    public abstract function makeSound();
+    abstract function makeSound();
     public function jump(){
         echo"Взлет";    }
 }
-class Cat extends Animal{
+class Cat extends Animal {
     public function makeSound()
     {
         echo 'Мур <br>';
